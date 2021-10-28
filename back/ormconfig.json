@@ -1,0 +1,19 @@
+{
+  "name": "default",
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "root",
+  "database": "wild",
+  "synchronize": true,
+  "logging": false,
+  "entities": [
+    "build/database/entity/*.js"
+  ],
+  "cli": {
+    "entitiesDir": "build/entity",
+    "migrationsDir": "build/migration",
+    "subscribersDir": "build/subscriber"
+  }
+}
