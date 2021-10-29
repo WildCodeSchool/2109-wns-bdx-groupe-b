@@ -9,8 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.User = exports.UserRole = void 0;
 var typeorm_1 = require("typeorm");
+var Job_1 = require("./Job");
+var File_1 = require("./File");
+var Comment_1 = require("./Comment");
+var UserRole;
+(function (UserRole) {
+    UserRole["ADMIN"] = "admin";
+    UserRole["USER"] = "user";
+})(UserRole = exports.UserRole || (exports.UserRole = {}));
 var User = /** @class */ (function () {
     function User() {
     }
@@ -29,11 +37,43 @@ var User = /** @class */ (function () {
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
-    ], User.prototype, "type", void 0);
+    ], User.prototype, "email", void 0);
     __decorate([
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
-    ], User.prototype, "birthday", void 0);
+    ], User.prototype, "password", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], User.prototype, "avatarPath", void 0);
+    __decorate([
+        (0, typeorm_1.Column)({
+            type: "enum",
+            enum: UserRole,
+            default: UserRole.USER
+        }),
+        __metadata("design:type", String)
+    ], User.prototype, "role", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", Boolean)
+    ], User.prototype, "isVerify", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], User.prototype, "token", void 0);
+    __decorate([
+        (0, typeorm_1.ManyToOne)(function () { return Job_1.Job; }, function (job) { return job.users; }),
+        __metadata("design:type", Job_1.Job)
+    ], User.prototype, "job", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return File_1.File; }, function (files) { return files.user; }),
+        __metadata("design:type", Array)
+    ], User.prototype, "files", void 0);
+    __decorate([
+        (0, typeorm_1.OneToMany)(function () { return Comment_1.Comment; }, function (comments) { return comments.user; }),
+        __metadata("design:type", Array)
+    ], User.prototype, "comments", void 0);
     User = __decorate([
         (0, typeorm_1.Entity)()
     ], User);
