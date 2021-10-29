@@ -1,26 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './styles/output.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-gray-900 p-20 h-screen flex justify-center items-start flex-col">
+      <h1 className="text-5xl text-white">Hello Tailwind 👋</h1>
+      <p className="text-gray-400 mt-5 text-lg">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
+        consequuntur odio aut nobis ab quis? Reiciendis doloremque ut quo fugiat
+        eveniet tempora, atque alias earum ullam inventore itaque sapiente iste?
+      </p>
     </div>
   );
 }
+
 
 export default App;
