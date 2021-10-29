@@ -30,6 +30,10 @@ var User = /** @class */ (function () {
         (0, typeorm_1.Column)(),
         __metadata("design:type", String)
     ], User.prototype, "type", void 0);
+    __decorate([
+        (0, typeorm_1.Column)(),
+        __metadata("design:type", String)
+    ], User.prototype, "birthday", void 0);
     User = __decorate([
         (0, typeorm_1.Entity)()
     ], User);
