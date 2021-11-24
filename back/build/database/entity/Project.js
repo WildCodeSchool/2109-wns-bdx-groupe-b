@@ -70,4 +70,4 @@ var Project = /** @class */ (function () {
     return Project;
 }());
 exports.Project = Project;
-//# sourceMappingURL=Project.js.map
+//# sourceMappingURL=project.js.map
