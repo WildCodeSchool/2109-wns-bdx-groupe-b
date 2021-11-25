@@ -4,6 +4,7 @@ import Projects from '../src/pages/Project';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './assets/global';
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import GlobalFonts from './fonts/fonts';
 
 import {
   BrowserRouter,
@@ -22,6 +23,7 @@ ReactDOM.render(
   <ApolloProvider client={client}>
     <BrowserRouter>
       <GlobalStyle />
+      <GlobalFonts />
       <Routes>
         <Route path="/" element={<App />}>
         <Route path="projects" element={<Projects />} />

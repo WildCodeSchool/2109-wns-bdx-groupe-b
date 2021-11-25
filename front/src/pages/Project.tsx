@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { COLORS } from '../assets/colors';
 import {
     Table,
@@ -24,6 +24,7 @@ import {
 
   import styled from "styled-components"
   import { GetProjects } from "../GetProject";
+import Labels from '../components/Labels';
 
   const GET_PROJECTS = gql`
   query GetProjects {
@@ -45,6 +46,7 @@ export default function Projects() {
 
 
     return (
+          <Fragment>
             <Table variant="striped">
                 <Thead>
                     <Tr>
@@ -59,15 +61,19 @@ export default function Projects() {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {data?.projects.map((item) => {
+                    {/* {data?.projects.map((item) => {
                         <Tr>
                             <Td><Checkbox /></Td>
                             <Td>dd</Td>
                             <Td>centimetres (cm)</Td>
 
                         </Tr>
-                    })}
+                    })} */}
+
                 </Tbody>
                 </Table>
+
+                  <Labels type="progress" textLabel="30%"></Labels>
+                </Fragment>
     )
 }
