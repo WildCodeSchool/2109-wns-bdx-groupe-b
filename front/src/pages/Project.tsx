@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { COLORS } from '../assets/colors';
 import {
     Table,
     Thead,
@@ -17,49 +18,33 @@ import {
   import { ChevronDownIcon } from '@chakra-ui/icons';
 
   import {
-    ApolloClient,
-    InMemoryCache,
-    ApolloProvider,
     useQuery,
     gql
   } from "@apollo/client";
-  
-  
-  const client = new ApolloClient({
-    uri: 'https://graphqlzero.almansi.me/api',
-    cache: new InMemoryCache()
-  });
+
+  import styled from "styled-components"
+  import { GetProjects } from "../GetProject";
+
+  const GET_PROJECTS = gql`
+  query GetProjects {
+    posts {
+      data {
+        id
+        title
+        body
+      }
+    }
+  }
+`;
+
 
 
 export default function Projects() {
     const [projects, setProjects] = React.useState<string[]>([]);
+    const { data } = useQuery<GetProjects>(GET_PROJECTS);
 
-
-    useEffect(getProjects, [projects]);
-
-    function getProjects () {
-        client
-.query({
-  query: gql`
-    query getPosts {
-      posts {
-        data {
-          id
-          title
-          body
-        }
-      }
-    }
-  `
-})
-.then(result => setProjects(result.data.posts.data));
-    }
-
-
-    
 
     return (
-        <div>
             <Table variant="striped">
                 <Thead>
                     <Tr>
@@ -74,16 +59,15 @@ export default function Projects() {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {projects.map((item: any) => (
+                    {data?.projects.map((item) => {
                         <Tr>
                             <Td><Checkbox /></Td>
-                            <Td>{item.title}</Td>
+                            <Td>dd</Td>
                             <Td>centimetres (cm)</Td>
-                        
+
                         </Tr>
-                     ))}
+                    })}
                 </Tbody>
                 </Table>
-        </div>
     )
 }

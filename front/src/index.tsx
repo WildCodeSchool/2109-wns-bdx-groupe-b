@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import Projects from '../src/pages/Project';
 import reportWebVitals from './reportWebVitals';
+import GlobalStyle from './assets/global';
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+
 import {
   BrowserRouter,
   Routes,
@@ -10,14 +12,23 @@ import {
 } from "react-router-dom";
 import App from './App';
 
+const client = new ApolloClient({
+  uri: "https://graphqlzero.almansi.me/api",
+  cache: new InMemoryCache(),
+});
+
+
 ReactDOM.render(
-     <BrowserRouter>
+  <ApolloProvider client={client}>
+    <BrowserRouter>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<App />}>
         <Route path="projects" element={<Projects />} />
         </Route>
       </Routes>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </ApolloProvider>,
   document.getElementById('root')
 );
 

@@ -1,13 +1,12 @@
 import React from 'react';
-import './App.css';
 import { ChakraProvider, Container } from "@chakra-ui/react"
-import Navbar from './components/Navbar';
+import Topbar from './components/Topbar';
 import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
     <ChakraProvider>
-      <Navbar />
+      <Topbar />
       <Container maxW="container.lg">
         <Outlet />
       </Container>
