@@ -1,9 +1,10 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinTable, ManyToMany} from "typeorm";
-import { User } from './User'
+import { Field, ID, ObjectType } from "type-graphql";
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinTable, ManyToMany, BaseEntity} from "typeorm";
+/* import { User } from './User'
 import { File } from './File'
 import { Comment } from './Comment'
 import { Time } from './Time'
-import { Job } from './Job'
+import { Job } from './Job' */
 
 export enum Status {
     TODO = "todo",
@@ -12,15 +13,19 @@ export enum Status {
 } 
 
 @Entity()
-export class Task {
+@ObjectType()
+class Task extends BaseEntity{
 
     @PrimaryGeneratedColumn()
+    @Field(() => ID)
     id!: number;
 
     @Column()
+    @Field()
     name!: string;
 
     @Column({ type: "text" })
+    @Field()
     description!: string;
 
     @Column({
@@ -28,15 +33,18 @@ export class Task {
         enum: Status,
         default: Status.TODO
     })
+    @Field()
     status!: Status;
 
     @Column()
+    @Field()
     initialTimeSpent!: number;
 
     @Column()
-    percentageTimeAccompished!: number;
+    @Field()
+    percentageTimeAccomplished!: number;
 
-    @ManyToMany(() => User)
+    /* @ManyToMany(() => User)
     @JoinTable()
     users!: User[];
 
@@ -51,5 +59,6 @@ export class Task {
     comments!: Comment[];
 
     @OneToMany(() => Time, times => times.task)
-    times!: Time[];
+    times!: Time[]; */
 }
+export default Task;
