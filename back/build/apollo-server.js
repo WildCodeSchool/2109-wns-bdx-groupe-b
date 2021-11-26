@@ -39,33 +39,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
-var typeorm_1 = require("typeorm");
-var apollo_server_1 = __importDefault(require("./apollo-server"));
-var dotenv_1 = __importDefault(require("dotenv"));
-//import getApolloServer from "./apollo-server";
-//import getDatabaseConnection from "./database-connection";
-dotenv_1.default.config();
-var runServer = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var server;
+var apollo_server_1 = require("apollo-server");
+var type_graphql_1 = require("type-graphql");
+var ProjectResolver_1 = __importDefault(require("./resolvers/projects/ProjectResolver"));
+exports.default = (function () { return __awaiter(void 0, void 0, void 0, function () {
+    var schema, server;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, (0, typeorm_1.createConnection)()];
+            case 0: return [4 /*yield*/, (0, type_graphql_1.buildSchema)({ resolvers: [ProjectResolver_1.default] })];
             case 1:
-                _a.sent();
-                // eslint-disable-next-line no-console
-                console.log("Connected to database");
-                return [4 /*yield*/, (0, apollo_server_1.default)()];
-            case 2:
-                server = _a.sent();
-                // The `listen` method launches a web server.
-                server.listen({ port: 3004 }).then(function (_a) {
-                    var url = _a.url;
-                    console.log("\uD83D\uDE80  Server ready at " + url);
-                });
-                return [2 /*return*/];
+                schema = _a.sent();
+                server = new apollo_server_1.ApolloServer({ schema: schema });
+                return [2 /*return*/, server];
         }
     });
-}); };
-runServer();
-//# sourceMappingURL=index.js.map
+}); });
+//# sourceMappingURL=apollo-server.js.map
