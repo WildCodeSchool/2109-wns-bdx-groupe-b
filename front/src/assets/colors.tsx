@@ -6,8 +6,8 @@ export const COLORS = {
     textContrast: "#A1AEC1",
     primary: "#306BFF",
     border: "#272735",
-    uxWritingContain: "#FFF6F0",
-    uxWritingColor: "#FFB986",
+    orangeBackground: "#FFF6F0",
+    orangeText: "#FFB986",
     yellowText: "#FFF0B7",
     yellowBackground: "#2E2D35",
 

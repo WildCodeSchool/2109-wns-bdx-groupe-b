@@ -1,5 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { COLORS } from '../assets/colors';
+import Label from '../components/Label';
+import AvatarGroup from '../components/AvatarGroup' 
+
 import {
     Table,
     Thead,
@@ -24,7 +27,8 @@ import {
 
   import styled from "styled-components"
   import { GetProjects } from "../GetProject";
-import Labels from '../components/Labels';
+import Labels from '../components/Label';
+import Avatar from "../components/Avatar";
 
   const GET_PROJECTS = gql`
   query GetProjects {
@@ -44,36 +48,25 @@ export default function Projects() {
     const [projects, setProjects] = React.useState<string[]>([]);
     const { data } = useQuery<GetProjects>(GET_PROJECTS);
 
+    const users =  [
+      {
+        "name" : "Corentin Lecoeur",
+      },
+      {
+        "name" : "Geffrey Freydas",
+      },
+      {
+        "name" : "Marion Freydas",
+      },
+    ]
+
 
     return (
           <Fragment>
-            <Table variant="striped">
-                <Thead>
-                    <Tr>
-                        <Th>
-                            <Checkbox defaultIsChecked />
-                        </Th>
-                        <Th>Désignation</Th>
-                        <Th>Statut</Th>
-                        <Th>Avancement</Th>
-                        <Th>Date</Th>
-                        <Th></Th>
-                    </Tr>
-                </Thead>
-                <Tbody>
-                    {/* {data?.projects.map((item) => {
-                        <Tr>
-                            <Td><Checkbox /></Td>
-                            <Td>dd</Td>
-                            <Td>centimetres (cm)</Td>
+               <Label text="label" />
+               <AvatarGroup users={users} />
 
-                        </Tr>
-                    })} */}
-
-                </Tbody>
-                </Table>
-
-                  <Labels type="progress" textLabel="30%"></Labels>
-                </Fragment>
+            
+          </Fragment>
     )
 }
